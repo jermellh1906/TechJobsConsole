@@ -39,6 +39,27 @@ namespace TechJobsConsole
             return values;
         }
 
+        // Original code for FindByColumnAndValue
+        // public static List<Dictionary<string, string>> FindByColumnAndValue(string column, string value)
+        //{
+        //    // load data, if not already loaded
+        //    LoadData();
+
+        //    List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+
+        //    foreach (Dictionary<string, string> row in AllJobs)
+        //    {
+        //        string aValue = row[column];
+
+        //        if (aValue.Contains(value))
+        //        {
+        //            jobs.Add(row);
+        //        }
+        //    }
+
+        //    return jobs;
+        //}
+
         public static List<Dictionary<string, string>> FindByColumnAndValue(string column, string value)
         {
             // load data, if not already loaded
@@ -49,7 +70,15 @@ namespace TechJobsConsole
             foreach (Dictionary<string, string> row in AllJobs)
             {
                 string aValue = row[column].ToLower();
-                if (aValue == value.ToLower())
+                // this was from submission1...feedback states logic of search functionality for both 
+                // FindByValue & FindByColumnAndValue is TOO STRICT.
+                //if (aValue == value.ToLower())
+                //{
+                //    jobs.Add(row);
+                //}
+
+                // using String.Contains() in this submission
+                if (aValue.Contains(value.ToLower()))
                 {
                     jobs.Add(row);
                 }
@@ -72,7 +101,14 @@ namespace TechJobsConsole
                 // convert the Values in row to lowercase
                 foreach (KeyValuePair<string, string> entry in row)
                 {
-                    if(entry.Value.ToLower() == searchStr.ToLower())
+                    // this was from submission1...feedback states logic of search functionality for both 
+                    // FindByValue & FindByColumnAndValue is TOO STRICT.
+                    //if(entry.Value.ToLower() == searchStr.ToLower())
+                    //{
+                    //    jobs.Add(row);
+                    //}
+
+                    if (entry.Value.ToLower().Contains(searchStr.ToLower()))
                     {
                         jobs.Add(row);
                     }
